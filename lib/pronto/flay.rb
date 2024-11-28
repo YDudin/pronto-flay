@@ -38,7 +38,7 @@ module Pronto
         patch = patch_for_node(node)
 
         line = patch.added_lines.find do |added_line|
-          added_line.new_lineno.to_s == node.line.to_s
+          added_line.new_lineno == node.line
         end
 
         new_message(line, node) if line
@@ -47,7 +47,7 @@ module Pronto
 
     def patch_for_node(node)
       ruby_patches.find do |patch|
-        patch.new_file_full_path == node.file
+        patch.new_file_full_path.to_s == node.file.to_s
       end
     end
 
