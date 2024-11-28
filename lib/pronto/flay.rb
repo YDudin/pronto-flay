@@ -38,7 +38,7 @@ module Pronto
         patch = patch_for_node(node)
 
         line = patch.added_lines.find do |added_line|
-          added_line.new_lineno == node.line
+          added_line.new_lineno.to_s == node.line.to_s
         end
 
         new_message(line, node) if line
